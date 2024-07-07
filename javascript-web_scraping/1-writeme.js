@@ -9,7 +9,7 @@ if (!filePath) {
   process.exit(1);
 }
 
-fs.readFile(filePath, stringy, 'utf8', (err) => {
+fs.readFile(filePath, stringy, 'utf8', (err, data) => {
   if (err) {
     console.error(err);
   } else {
