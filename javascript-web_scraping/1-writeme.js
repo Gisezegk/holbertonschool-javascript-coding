@@ -1,7 +1,21 @@
-#!/usr/bin/node
+#!/usr/bin/env node
 
 const fs = require('fs');
-fs.writeFile(process.argv[2], process.argv[3], 'utf-8', err => {
+
+const filePath = process.argv[2];
+const stringToWrite = process.argv[3];
+
+if (!filePath || !stringToWrite) {
+  console.error(err);
+  process.exit(1);
+}
+
+// Write the string to the file in UTF-8
+fs.writeFile(filePath, stringToWrite, 'utf8', (err, data) => {
   if (err) {
-    console.error(err); }
+    // Print the error object if an error occurred
+    console.error(err);
+  } else {
+    console.log(data);
+  }
 });
