@@ -7,6 +7,7 @@ if (!filePath) {
   console.error(err);
   process.exit(1);
 }
+
 fs.readFile(filePath, 'utf8', (err, data) => {
   if (err) {
     console.error(err);
