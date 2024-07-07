@@ -1,4 +1,4 @@
-#!/usr/bin/env node
+#!/usr/bin/node
 
 const fs = require('fs');
 
@@ -10,10 +10,8 @@ if (!filePath || !stringToWrite) {
   process.exit(1);
 }
 
-// Write the string to the file in UTF-8
 fs.writeFile(filePath, stringToWrite, 'utf8', (err, data) => {
   if (err) {
-    // Print the error object if an error occurred
     console.error(err);
   } else {
     console.log(data);
