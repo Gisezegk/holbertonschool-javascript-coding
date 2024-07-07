@@ -10,10 +10,10 @@ if (!filePath || !stringToWrite) {
   process.exit(1);
 }
 
-fs.writeFile(filePath, stringToWrite, 'utf8', (err, data) => {
+fs.writeFile(filePath, stringToWrite, 'utf8', (err) => {
   if (err) {
     console.error(err);
   } else {
-    console.log(data);
+    console.log(`Successfully wrote to ${filePath}`);
   }
 });
