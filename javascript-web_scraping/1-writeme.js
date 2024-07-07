@@ -1,19 +1,15 @@
 #!/usr/bin/node
 
 const fs = require('fs');
+const filepath = process.argv[2];
+const writedata = process.argv[3];
 
-const filePath = process.argv[2];
-const stringToWrite = process.argv[3];
-
-if (!filePath || !stringToWrite) {
-  console.error(err);
-  process.exit(1);
+function filewriter (filepath, writedata) {
+  fs.writeFile(filepath, writedata, 'utf-8', (err, data) => {
+    if (err) {
+      console.error(err);
+    }
+  });
 }
 
-fs.writeFile(filePath, stringToWrite, 'utf8', (err) => {
-  if (err) {
-    console.error(err);
-  } else {
-    console.log(`Successfully wrote to ${filePath}`);
-  }
-});
+filewriter(filepath, writedata);
