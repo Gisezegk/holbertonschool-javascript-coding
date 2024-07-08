@@ -12,7 +12,7 @@ const url = `https://swapi-api.hbtn.io/api/films/${movieId}`;
 
 request.get(url, (error, response, body) => {
   if (error) {
-    console.error(error.message);
+    console.error(error);
     return;
   }
 
