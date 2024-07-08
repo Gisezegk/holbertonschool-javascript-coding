@@ -1,19 +1,13 @@
 #!/usr/bin/node
-
-const fs = require('fs');
+// script that prints the title of a Star Wars movie where the episode number matches a given integer.
 const request = require('request');
-const url = process.argv[2];
-const filepath = process.argv[3];
+const id = process.argv[2];
+const API = 'https://swapi-api.hbtn.io/api/films/' + id;
 
-request(url, function (error, response, body) {
-  if (error) {
-    console.error(error);
+request(API, function (error, response, body) {
+  if (error != null) {
+    console.error('error:', error);
   }
-  if (response.statusCode === 200) {
-    fs.writeFile(filepath, body, 'utf-8', function (error) {
-      if (error) {
-        console.error(error);
-      }
-    });
-  }
+  const objMovie = JSON.parse(body);
+  console.log(objMovie.title);
 });
