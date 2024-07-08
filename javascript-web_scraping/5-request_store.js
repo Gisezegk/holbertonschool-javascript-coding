@@ -1,14 +1,21 @@
 #!/usr/bin/node
-const fs = require('fs');
+/*
+Gets the contents of a webpage and stores it in a file.
+The first argument is the URL to request
+The second argument the file path to store the body response
+The file must be UTF-8 encoded
+*/
 const request = require('request');
-const apiUrl = process.argv[2];
+const fs = require('fs');
+const url = process.argv[2];
+const path = process.argv[3];
 
-request.get(apiUrl, (error, response, body) => {
-  if (error) {
-    console.log(error);
+request(url, (err, res, body) => {
+  if (err) {
+    console.log(err);
+    return;
   }
-
-  fs.writeFile(process.argv[3], body, (err, data) => {
+  fs.writeFile(path, body, 'utf-8', (err) => {
     if (err) {
       console.log(err);
     }
