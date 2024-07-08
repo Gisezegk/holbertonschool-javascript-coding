@@ -10,7 +10,7 @@ if (!url) {
 
 request.get(url, (error, response) => {
   if (error) {
-    console.error(error);
+    console.error(`code: ${error.code}`);
     return;
   }
   console.log(`code: ${response.statusCode}`);
