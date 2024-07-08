@@ -4,14 +4,14 @@ const request = require('request');
 const url = process.argv[2];
 
 if (!url) {
-  console.error("Error: No URL provided.");
+  console.error(error);
   process.exit(1);
 }
 
 request.get(url, (error, response) => {
   if (error) {
-    console.error(`code: ${error.code}`);
+    console.error(error);
     return;
   }
-  console.log(`code: ${response.statusCode}`);
+  console.log(`code: ${response}`);
 });
