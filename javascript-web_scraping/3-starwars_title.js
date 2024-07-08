@@ -1,7 +1,7 @@
 #!/usr/bin/node
 
 const req = require('request');
-request('https://swapi-api.hbtn.io/api/films/' + process.argv[2], (error, content) => {
+req('https://swapi-api.hbtn.io/api/films/' + process.argv[2], (error, content) => {
   if (error) {
     console.error(error);
 
