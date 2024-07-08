@@ -1,18 +1,24 @@
 #!/usr/bin/node
+/*
+Gets the contents of a webpage and stores it in a file.
+The first argument is the URL to request
+The second argument the file path to store the body response
+The file must be UTF-8 encoded
+*/
 const request = require('request');
-const apiUrl = process.argv[2];
+const fs = require('fs');
+const url = process.argv[2];
+const path = process.argv[3];
 
-request.get(apiUrl, (err, response, body) => {
+request(url, (err, res, body) => {
   if (err) {
     console.log(err);
+    return;
   }
-  const completedTasks = {};
-  const todo = JSON.parse(body);
-  todo.forEach(task => {
-    if (task.completed) {
-      if (!completedTasks[task.userId]) completedTasks[task.userId] = 1;
-      else completedTasks[task.userId] += 1;
+  fs.writeFile(path, body, 'utf-8', (err) => {
+    if (err) {
+      console.log(err);
     }
   });
-  console.log(completedTasks);
+
 });
