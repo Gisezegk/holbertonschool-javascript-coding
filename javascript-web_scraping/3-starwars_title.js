@@ -6,11 +6,16 @@ const id = process.argv[2];
 const url = `https://swapi-api.hbtn.io/api/films/${id}`;
 
 request(url, (error, response, body) => {
-  if (error) console.log(error);
+  if (error) {
+    console.error(error);
+    return;
+  }
 
-  console.log(`code: ${response.statusCode}`);
+  if (response.statusCode !== 200) {
+    console.error(`Error: Status code ${response.statusCode}`);
+    return;
+  }
 
   const data = JSON.parse(body);
-  const title = data.title;
-  console.log(title);
+  console.log(data.title);
 });
