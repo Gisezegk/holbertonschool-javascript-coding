@@ -1,21 +1,22 @@
 #!/usr/bin/node
+
 const request = require('request');
-const apiMovie = process.argv[2];
+const url = process.argv[2];
 
-request.get(apiMovie, (error, response, body) => {
-  if (error) {
-    console.erroror(error);
-    return;
+request(url, (err, res, body) => {
+  if (err) {
+    console.log(err);
+  } else {
+    let count = 0;
+    const films = JSON.parse(body).results;
+    for (const result of films) {
+      for (const character of result.characters) {
+        if (character.includes('18')) {
+          count++;
+        }
+      }
+    }
+
+    console.log(count);
   }
-
-  let characterFilms = 0;
-  const allMovies = JSON.parse(body).results;
-
-  allMovies.forEach((movie) => {
-    movie.characters.forEach((character) => {
-      characterFilms += character.includes('/people/18') ? 1 : 0;
-    });
-  });
-
-  console.log(characterFilms);
 });
