@@ -1,16 +1,12 @@
 #!/usr/bin/node
-/*
-Prints the title of a Star Wars movie
-*/
+
 const request = require('request');
-
-const id = process.argv[2];
-const url = 'https://swapi-api.hbtn.io/api/films/' + id;
-
-request(url, (err, res, body) => {
+const apiUrl = `https://swapi-api.hbtn.io/api/films/${process.argv[2]}`;
+request.get(apiUrl, (err, response, body) => {
   if (err) {
     console.log(err);
-    return;
+
   }
-  console.log(JSON.parse(body).title);
+  const movieData = JSON.parse(body);
+  console.log(movieData.title);
 });
